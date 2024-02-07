@@ -22,4 +22,29 @@ def letra_is_correct(letra, secret_word):
         return False
 
 
-# Comprueba si ha ganado o no
+def is_win(secret_word, word, vidas):
+    # Comprueba si ha ganado o no
+
+    for sw_char, w_char in zip(secret_word, word):
+        if (sw_char != w_char) and vidas == 0:
+            return False
+        else:
+            pass
+
+    return True
+
+
+# FLUJO PRINCIPAL DE EJECUCIÓN
+dictionary = ("Ordenador", "Portátil", "Tablet", "Bolsa de Valores", "Cargador", "Elecciones", "Voto", "Mochila"
+              , "Persiana", "Camiseta", "Reloj")
+secret_word = choice(dictionary)
+word = ["-" for letter in secret_word]
+vidas = 6
+
+print("JUEGO DEL AHORCADO: ")
+print(f"Bienvenido al juego del ahorcado!\nDebes adivinar la siguiente palabra secreta\n"
+      f"y tienes un máximo de {vidas} errores posibles\nTu palabra secreta es:\n")
+
+print(word)
+
+
