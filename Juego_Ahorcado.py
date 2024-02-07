@@ -34,17 +34,29 @@ def is_win(secret_word, word, vidas):
     return True
 
 
+def mostrar(secret_word, vidas, letras_correctas):
+    word = ""
+    for letra in secret_word:
+        if letra in letras_correctas:
+            word += letra
+        else:
+            word += "-"
+
+    return word
+
+
 # FLUJO PRINCIPAL DE EJECUCIÓN
 dictionary = ("Ordenador", "Portátil", "Tablet", "Bolsa de Valores", "Cargador", "Elecciones", "Voto", "Mochila"
               , "Persiana", "Camiseta", "Reloj")
 secret_word = choice(dictionary)
-word = ["-" for letter in secret_word]
+letras_correctas = []
+letras_incorrectas = []
 vidas = 6
 
 print("JUEGO DEL AHORCADO: ")
 print(f"Bienvenido al juego del ahorcado!\nDebes adivinar la siguiente palabra secreta\n"
       f"y tienes un máximo de {vidas} errores posibles\nTu palabra secreta es:\n")
 
-print(word)
+
 
 
