@@ -29,7 +29,7 @@ def is_win(secret_word, letras_correctas):
     # Comprueba si ha ganado o no
 
     for letra in secret_word.lower():
-        if letra not in letras_correctas:
+        if letra not in letras_correctas and letra != " ":
             return False
         else:
             pass
@@ -41,6 +41,8 @@ def mostrar(secret_word, letras_correctas):
     word = ""
     for letra in secret_word:
         if letra.lower() in letras_correctas:
+            word += letra
+        elif letra.lower() == " ":
             word += letra
         else:
             word += "-"
@@ -54,9 +56,9 @@ def menu():
 
     while exit == 1:
         print("\nEscoge la temática del juego: ")
-        tema = int(input("1ºVariado - 2ºGalicia\n:"))
+        tema = int(input("1ºVariado - 2ºGalicia - 3ºFísica\n:"))
 
-        if tema in range(1, 3):
+        if tema in range(1, 4):
             return tema
         else:
             print("ERROR. Introduce uno de los número mostrados por pantalla")
@@ -73,6 +75,10 @@ dictionary_variado = (
 dictionary_galicia = ("A Coruña", "Sillobre", "Fene", "Ferrol", "Pontevedra", "Vigo", "Ourense", "Fisterra", "Cee",
                       "Ribeira", "Cambados", "Vilagarcía de Arousa", "Camariñas")
 
+dictionary_fisica = ("Relatividad especial", "Relatividad general", "Gravedad", "Teoria de cuerdas", "Magnetismo",
+                     "Albert Einstein", "Isaac Newton", "Efecto fotoelectrico", "Radiacion", "Sheldon Cooper",
+                     "Quarks", "Proton", "Neutron", "Electron", "Efecto Doppler")
+
 secret_word = ""
 letras_correctas = []
 letras_incorrectas = []
@@ -88,7 +94,8 @@ match menu():
         secret_word = choice(dictionary_variado)
     case 2:
         secret_word = choice(dictionary_galicia)
-
+    case 3:
+        secret_word = choice(dictionary_fisica)
 
 print("Tu palabra secreta es:\n")
 
