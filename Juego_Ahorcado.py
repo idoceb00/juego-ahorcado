@@ -8,10 +8,19 @@ def pide_letra():
 
 def letra_is_valid(letra):
     # Comprobar letra valida
-    if type(letra) is not str:
+    letra = list(letra)
+
+    if len(letra) > 1:
+        print("ERROR. Formato NO válido. Debe ser un único Carácter")
         return False
     else:
-        return True
+        letra = int(letra[0])
+
+        if letra in range(-9, 10):
+            print("ERROR. Formato NO válido. Debe ser una letra no un número")
+            return False
+        else:
+            return True
 
 
 def letra_is_correct(letra, secret_word):
@@ -34,7 +43,7 @@ def is_win(secret_word, word, vidas):
     return True
 
 
-def mostrar(secret_word, vidas, letras_correctas):
+def mostrar(secret_word, letras_correctas):
     word = ""
     for letra in secret_word:
         if letra in letras_correctas:
@@ -57,6 +66,13 @@ print("JUEGO DEL AHORCADO: ")
 print(f"Bienvenido al juego del ahorcado!\nDebes adivinar la siguiente palabra secreta\n"
       f"y tienes un máximo de {vidas} errores posibles\nTu palabra secreta es:\n")
 
+print(mostrar(secret_word, letras_correctas) + f"\nVIDAS: {vidas}")
 
+letra = pide_letra()
+
+if letra_is_valid(letra):
+    pass
+else:
+    pass
 
 
