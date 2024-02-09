@@ -59,7 +59,7 @@ dictionary_variado = (
 dictionary_galicia = ("A Coruña", "Sillobre", "Fene", "Ferrol", "Pontevedra", "Vigo", "Ourense", "Fisterra", "Cee",
                       "Ribeira", "Cambados", "Vilagarcía de Arousa", "Camariñas")
 
-secret_word = choice(dictionary_galicia)
+secret_word = choice(dictionary_variado)
 letras_correctas = []
 letras_incorrectas = []
 vidas = 6
