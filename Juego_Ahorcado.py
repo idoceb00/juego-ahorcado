@@ -14,28 +14,22 @@ def letra_is_valid(letra):
         print("ERROR. Formato NO válido. Debe ser un único Carácter")
         return False
     else:
-        letra = int(letra[0])
-
-        if letra in range(-9, 10):
-            print("ERROR. Formato NO válido. Debe ser una letra no un número")
-            return False
-        else:
-            return True
+        return True
 
 
 def letra_is_correct(letra, secret_word):
     # Comprobar letra correcta
-    if letra is secret_word:
+    if letra.lower() in secret_word.lower():
         return True
     else:
         return False
 
 
-def is_win(secret_word, word, vidas):
+def is_win(secret_word, letras_correctas):
     # Comprueba si ha ganado o no
 
-    for sw_char, w_char in zip(secret_word, word):
-        if (sw_char != w_char) and vidas == 0:
+    for letra in secret_word:
+        if letra not in letras_correctas:
             return False
         else:
             pass
@@ -45,7 +39,7 @@ def is_win(secret_word, word, vidas):
 
 def mostrar(secret_word, letras_correctas):
     word = ""
-    for letra in secret_word:
+    for letra in secret_word.lower():
         if letra in letras_correctas:
             word += letra
         else:
@@ -61,18 +55,28 @@ secret_word = choice(dictionary)
 letras_correctas = []
 letras_incorrectas = []
 vidas = 6
+fin = 1
 
 print("JUEGO DEL AHORCADO: ")
 print(f"Bienvenido al juego del ahorcado!\nDebes adivinar la siguiente palabra secreta\n"
       f"y tienes un máximo de {vidas} errores posibles\nTu palabra secreta es:\n")
 
-print(mostrar(secret_word, letras_correctas) + f"\nVIDAS: {vidas}")
+while fin == 1:
+    print(secret_word)
+    print(mostrar(secret_word, letras_correctas) + f"\nVIDAS: {vidas}")
 
-letra = pide_letra()
+    letra = pide_letra()
 
-if letra_is_valid(letra):
-    pass
-else:
-    pass
+    if letra_is_valid(letra):
+        if letra_is_correct(letra, secret_word):
+            letras_correctas += letra
+        else:
+            letras_incorrectas += letra
+            vidas -= 1
 
-
+    if vidas == 0:
+        print("GAME OVER")
+        fin = 0
+    elif is_win(secret_word, letras_correctas):
+        print("Enhorabuena Has ganado")
+        fin = 0
