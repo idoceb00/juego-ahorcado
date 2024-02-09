@@ -48,18 +48,32 @@ def mostrar(secret_word, letras_correctas):
     return word
 
 
+def menu():
+    # Función que pide al usuario la temática del juego
+    exit = 1
+
+    while exit == 1:
+        print("\nEscoge la temática del juego: ")
+        tema = int(input("1ºVariado - 2ºGalicia\n:"))
+
+        if tema in range(1, 3):
+            return tema
+        else:
+            print("ERROR. Introduce uno de los número mostrados por pantalla")
+
+
 # FLUJO PRINCIPAL DE EJECUCIÓN
 dictionary_variado = (
-"Ordenador", "Tablet", "Bolsa de Valores", "Cargador", "Elecciones", "Voto", "Mochila", "Persiana",
-"Camiseta", "Reloj", "Vodka", "Calculadora", "Paraguas", "Pasamontañas", "Flexo", "Freixo",
-"Aguacate", "Silla", "Altavoz", "Abogado", "Profesor", "Conserje", "Director", "Silla de ruedas",
-"Masaje", "Comprensión lectora", "Amor propio", "Narcisismo", "Libreta", "Goma de borrar", "Zapatilla",
-"Cerveza", "Vino", "Galicia",)
+    "Ordenador", "Tablet", "Bolsa de Valores", "Cargador", "Elecciones", "Voto", "Mochila", "Persiana",
+    "Camiseta", "Reloj", "Vodka", "Calculadora", "Paraguas", "Pasamontañas", "Flexo", "Freixo",
+    "Aguacate", "Silla", "Altavoz", "Abogado", "Profesor", "Conserje", "Director", "Silla de ruedas",
+    "Masaje", "Comprensión lectora", "Amor propio", "Narcisismo", "Libreta", "Goma de borrar", "Zapatilla",
+    "Cerveza", "Vino", "Galicia",)
 
 dictionary_galicia = ("A Coruña", "Sillobre", "Fene", "Ferrol", "Pontevedra", "Vigo", "Ourense", "Fisterra", "Cee",
                       "Ribeira", "Cambados", "Vilagarcía de Arousa", "Camariñas")
 
-secret_word = choice(dictionary_variado)
+secret_word = ""
 letras_correctas = []
 letras_incorrectas = []
 vidas = 6
@@ -67,7 +81,16 @@ fin = 1
 
 print("JUEGO DEL AHORCADO: ")
 print(f"Bienvenido al juego del ahorcado!\nDebes adivinar la siguiente palabra secreta\n"
-      f"y tienes un máximo de {vidas} errores posibles\nTu palabra secreta es:\n")
+      f"y tienes un máximo de {vidas} errores posibles\n")
+
+match menu():
+    case 1:
+        secret_word = choice(dictionary_variado)
+    case 2:
+        secret_word = choice(dictionary_galicia)
+
+
+print("Tu palabra secreta es:\n")
 
 while fin == 1:
     # print(secret_word)
