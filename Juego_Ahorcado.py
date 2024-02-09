@@ -28,7 +28,7 @@ def letra_is_correct(letra, secret_word):
 def is_win(secret_word, letras_correctas):
     # Comprueba si ha ganado o no
 
-    for letra in secret_word:
+    for letra in secret_word.lower():
         if letra not in letras_correctas:
             return False
         else:
@@ -63,7 +63,7 @@ print(f"Bienvenido al juego del ahorcado!\nDebes adivinar la siguiente palabra s
 
 while fin == 1:
     print(secret_word)
-    print(mostrar(secret_word, letras_correctas) + f"\nVIDAS: {vidas}")
+    print(mostrar(secret_word, letras_correctas) + f"\nLetras incorrectas: {letras_incorrectas}\nVIDAS: {vidas}")
 
     letra = pide_letra()
 
@@ -74,9 +74,9 @@ while fin == 1:
             letras_incorrectas += letra
             vidas -= 1
 
-    if vidas == 0:
-        print("GAME OVER")
-        fin = 0
-    elif is_win(secret_word, letras_correctas):
+    if is_win(secret_word, letras_correctas):
         print("Enhorabuena Has ganado")
+        fin = 0
+    elif vidas == 0:
+        print("GAME OVER")
         fin = 0
